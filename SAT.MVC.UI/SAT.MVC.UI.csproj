@@ -168,15 +168,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CoursController.cs" />
-    <Compile Include="Controllers\EnrollmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
-    <Compile Include="Controllers\ScheduledClassesController.cs" />
-    <Compile Include="Controllers\ScheduledClassStatusController.cs" />
-    <Compile Include="Controllers\StudentsController.cs" />
-    <Compile Include="Controllers\StudentStatusController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -189,16 +183,31 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\favicon.ico" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\css\styles.css" />
+    <Content Include="Content\js\scripts.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="_Archive\about.html" />
+    <Content Include="_Archive\assets\favicon.ico" />
+    <Content Include="_Archive\blog-home.html" />
+    <Content Include="_Archive\blog-post.html" />
+    <Content Include="_Archive\contact.html" />
+    <Content Include="_Archive\css\styles.css" />
+    <Content Include="_Archive\faq.html" />
+    <Content Include="_Archive\index.html" />
+    <Content Include="_Archive\js\scripts.js" />
+    <Content Include="_Archive\portfolio-item.html" />
+    <Content Include="_Archive\portfolio-overview.html" />
+    <Content Include="_Archive\pricing.html" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -257,36 +266,7 @@
     <Content Include="Views\RolesAdmin\Delete.cshtml" />
     <Content Include="Views\RolesAdmin\Create.cshtml" />
     <Content Include="Views\Account\DisplayEmail.cshtml" />
-    <Content Include="Views\Cours\Create.cshtml" />
-    <Content Include="Views\Cours\Delete.cshtml" />
-    <Content Include="Views\Cours\Details.cshtml" />
-    <Content Include="Views\Cours\Edit.cshtml" />
-    <Content Include="Views\Cours\Index.cshtml" />
-    <Content Include="Views\Enrollments\Create.cshtml" />
-    <Content Include="Views\Enrollments\Delete.cshtml" />
-    <Content Include="Views\Enrollments\Details.cshtml" />
-    <Content Include="Views\Enrollments\Edit.cshtml" />
-    <Content Include="Views\Enrollments\Index.cshtml" />
-    <Content Include="Views\ScheduledClasses\Create.cshtml" />
-    <Content Include="Views\ScheduledClasses\Delete.cshtml" />
-    <Content Include="Views\ScheduledClasses\Details.cshtml" />
-    <Content Include="Views\ScheduledClasses\Edit.cshtml" />
-    <Content Include="Views\ScheduledClasses\Index.cshtml" />
-    <Content Include="Views\ScheduledClassStatus\Create.cshtml" />
-    <Content Include="Views\ScheduledClassStatus\Delete.cshtml" />
-    <Content Include="Views\ScheduledClassStatus\Details.cshtml" />
-    <Content Include="Views\ScheduledClassStatus\Edit.cshtml" />
-    <Content Include="Views\ScheduledClassStatus\Index.cshtml" />
-    <Content Include="Views\Students\Create.cshtml" />
-    <Content Include="Views\Students\Delete.cshtml" />
-    <Content Include="Views\Students\Details.cshtml" />
-    <Content Include="Views\Students\Edit.cshtml" />
-    <Content Include="Views\Students\Index.cshtml" />
-    <Content Include="Views\StudentStatus\Create.cshtml" />
-    <Content Include="Views\StudentStatus\Delete.cshtml" />
-    <Content Include="Views\StudentStatus\Details.cshtml" />
-    <Content Include="Views\StudentStatus\Edit.cshtml" />
-    <Content Include="Views\StudentStatus\Index.cshtml" />
+    <Content Include="Views\Shared\_OriginalLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
