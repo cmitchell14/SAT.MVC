@@ -83,13 +83,6 @@ namespace SAT.MVC.EF
 
     public class ScheduledClassMetadata
     {
-        [Required(ErrorMessage = "This is a required field.")]
-        [Display(Name = "Class Schedule ID")]
-        public int ScheduledClassId { get; set; }
-
-        [Required(ErrorMessage = "This is a required field.")]
-        [Display(Name = "Course ID")]
-        public int CourseId { get; set; }
 
         [Required(ErrorMessage = "This is a required field.")]
         [Display(Name = "Start Date")]
@@ -109,9 +102,7 @@ namespace SAT.MVC.EF
         [StringLength(20, ErrorMessage = "20 character max.")]
         public string Location { get; set; }
 
-        [Required(ErrorMessage = "This is a required field.")]
-        [Display(Name = "SCSID")]
-        public int SCSID { get; set; }
+
     }
 
     [MetadataType(typeof(ScheduledClassMetadata))]
@@ -131,6 +122,7 @@ namespace SAT.MVC.EF
 
         [Required(ErrorMessage = "This is a required field.")]
         [StringLength(50, ErrorMessage = "50 character max.")]
+        [Display(Name = "Status")]
         public string SCSName { get; set; }
 
     }
@@ -209,7 +201,7 @@ namespace SAT.MVC.EF
         public int SSID { get; set; }
 
         [Required(ErrorMessage = "This is a required field")]
-        [Display(Name = "Student Status Name")]
+        [Display(Name = "Student Status")]
         [StringLength(30, ErrorMessage = "30 character max.")]
         public string SSName { get; set; }
 

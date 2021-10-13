@@ -7,7 +7,7 @@
       <Diagram DiagramId="d2df7bce81ad425b9f103cd683d6c3a6" Name="Diagram1">
         <EntityTypeShape EntityType="SATModel.Cours" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SATModel.Enrollment" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SATModel.ScheduledClass" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SATModel.ScheduledClass" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SATModel.ScheduledClassStatus" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SATModel.Student" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SATModel.StudentStatus" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
