@@ -10,6 +10,7 @@ using SAT.MVC.EF;
 
 namespace SAT.MVC.UI.Controllers
 {
+    [Authorize(Roles = "Admin,Scheduler")]
     public class StudentsController : Controller
     {
         private SATEntities db = new SATEntities();
@@ -36,7 +37,9 @@ namespace SAT.MVC.UI.Controllers
             return View(student);
         }
 
+
         // GET: Students/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.SSID = new SelectList(db.StudentStatuses, "SSID", "SSName");
@@ -62,6 +65,7 @@ namespace SAT.MVC.UI.Controllers
         }
 
         // GET: Students/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -95,6 +99,7 @@ namespace SAT.MVC.UI.Controllers
         }
 
         // GET: Students/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

@@ -10,6 +10,7 @@ using SAT.MVC.EF;
 
 namespace SAT.MVC.UI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CoursController : Controller
     {
         private SATEntities db = new SATEntities();
@@ -17,7 +18,8 @@ namespace SAT.MVC.UI.Controllers
         // GET: Cours
         public ActionResult Index()
         {
-            return View(db.Courses.ToList());
+            var active = db.Courses.Where(x => x.IsActive == true).ToList();
+            return View(active);
         }
 
         // GET: Cours/Details/5

@@ -10,6 +10,7 @@ using SAT.MVC.EF;
 
 namespace SAT.MVC.UI.Controllers
 {
+    [Authorize(Roles = "Admin,Scheduler")]
     public class ScheduledClassesController : Controller
     {
         private SATEntities db = new SATEntities();
@@ -99,6 +100,7 @@ namespace SAT.MVC.UI.Controllers
         }
 
         // GET: ScheduledClasses/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,6 +115,7 @@ namespace SAT.MVC.UI.Controllers
             return View(scheduledClass);
         }
 
+        
         // POST: ScheduledClasses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

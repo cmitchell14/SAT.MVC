@@ -10,107 +10,109 @@ using SAT.MVC.EF;
 
 namespace SAT.MVC.UI.Controllers
 {
-    public class StudentStatusController : Controller
+    [Authorize(Roles = "Admin")]
+    public class InactiveCoursesController : Controller
     {
         private SATEntities db = new SATEntities();
 
-        // GET: StudentStatus
+        // GET: InactiveCourses
         public ActionResult Index()
         {
-            return View(db.StudentStatuses.ToList());
+            var inactiveCourses = db.Courses.Where(x => x.IsActive == false).ToList() ;
+            return View(inactiveCourses);
         }
 
-        // GET: StudentStatus/Details/5
+        // GET: InactiveCourses/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            StudentStatus studentStatus = db.StudentStatuses.Find(id);
-            if (studentStatus == null)
+            Cours cours = db.Courses.Find(id);
+            if (cours == null)
             {
                 return HttpNotFound();
             }
-            return View(studentStatus);
+            return View(cours);
         }
 
-        // GET: StudentStatus/Create
+        // GET: InactiveCourses/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: StudentStatus/Create
+        // POST: InactiveCourses/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SSID,SSName,SSDescription")] StudentStatus studentStatus)
+        public ActionResult Create([Bind(Include = "CourseId,CourseName,CourseDescription,CreditHours,Curriculum,Notes,IsActive")] Cours cours)
         {
             if (ModelState.IsValid)
             {
-                db.StudentStatuses.Add(studentStatus);
+                db.Courses.Add(cours);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(studentStatus);
+            return View(cours);
         }
 
-        // GET: StudentStatus/Edit/5
+        // GET: InactiveCourses/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            StudentStatus studentStatus = db.StudentStatuses.Find(id);
-            if (studentStatus == null)
+            Cours cours = db.Courses.Find(id);
+            if (cours == null)
             {
                 return HttpNotFound();
             }
-            return View(studentStatus);
+            return View(cours);
         }
 
-        // POST: StudentStatus/Edit/5
+        // POST: InactiveCourses/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SSID,SSName,SSDescription")] StudentStatus studentStatus)
+        public ActionResult Edit([Bind(Include = "CourseId,CourseName,CourseDescription,CreditHours,Curriculum,Notes,IsActive")] Cours cours)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(studentStatus).State = EntityState.Modified;
+                db.Entry(cours).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(studentStatus);
+            return View(cours);
         }
 
-        // GET: StudentStatus/Delete/5
+        // GET: InactiveCourses/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            StudentStatus studentStatus = db.StudentStatuses.Find(id);
-            if (studentStatus == null)
+            Cours cours = db.Courses.Find(id);
+            if (cours == null)
             {
                 return HttpNotFound();
             }
-            return View(studentStatus);
+            return View(cours);
         }
 
-        // POST: StudentStatus/Delete/5
+        // POST: InactiveCourses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            StudentStatus studentStatus = db.StudentStatuses.Find(id);
-            db.StudentStatuses.Remove(studentStatus);
+            Cours cours = db.Courses.Find(id);
+            db.Courses.Remove(cours);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
