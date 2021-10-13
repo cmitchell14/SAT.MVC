@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SAT.MVC.EF;
-
+using SAT.MVC.UI.Utilities;
 namespace SAT.MVC.UI.Controllers
 {
     [Authorize(Roles = "Admin,Scheduler")]
     public class StudentsController : Controller
     {
         private SATEntities db = new SATEntities();
+
+        public object ImageUtility { get; private set; }
 
         // GET: Students
         public ActionResult Index()
@@ -51,10 +54,57 @@ namespace SAT.MVC.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StudentId,FirstName,LastName,Major,Address,City,State,ZipCode,Phone,Email,PhotoUrl,SSID")] Student student)
+        public ActionResult Create([Bind(Include = "StudentId,FirstName,LastName,Major,Address,City,State,ZipCode,Phone,Email,PhotoUrl,SSID")] Student student, HttpPostedFileBase studentImage)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload
+
+                string imageName = "noImage.jpg";
+
+                if (studentImage != null)
+                {
+                    imageName = studentImage.FileName;
+
+                    string ext = imageName.Substring(imageName.LastIndexOf("."));
+
+                    string[] goodExts = new string[] { ".jpg", ".png", ".jpeg", ".gif" };
+                    if (goodExts.Contains(ext))
+                    {
+                        #region Resize Image
+
+                        imageName = Guid.NewGuid() + ext;
+
+                        //params for the Image Utility
+                        //What we need:  Filepath, Image File, maximum image size (full size), maximum thumb size (thumbnail)
+
+                        //filepath
+                        string savePath = Server.MapPath("~/Content/img/studentPics/");
+
+                        //image file
+                        Image convertedImage = Image.FromStream(studentImage.InputStream);
+
+                        //Max image size
+                        int maxImageSize = 500; //value in pixels
+
+                        //Max Thumb size
+                        int maxThumbSize = 100;
+
+                        //Call the ImageUtility to do work
+                        Utilities.ImageUtility.ResizeImage(savePath, imageName, convertedImage, maxImageSize, maxThumbSize);
+
+                        #endregion
+
+                    }
+                    else
+                    {
+                        imageName = "noImage.jpg";
+                    }
+                }
+
+                student.PhotoUrl = imageName;
+
+                #endregion
                 db.Students.Add(student);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -86,10 +136,62 @@ namespace SAT.MVC.UI.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StudentId,FirstName,LastName,Major,Address,City,State,ZipCode,Phone,Email,PhotoUrl,SSID")] Student student)
+        public ActionResult Edit([Bind(Include = "StudentId,FirstName,LastName,Major,Address,City,State,ZipCode,Phone,Email,PhotoUrl,SSID")] Student student, HttpPostedFileBase studentImage)
         {
             if (ModelState.IsValid)
             {
+
+                #region File Upload
+
+                string imageName = "";
+
+                if (studentImage != null)
+                {
+                    imageName = studentImage.FileName;
+
+                    string ext = imageName.Substring(imageName.LastIndexOf("."));
+
+                    string[] goodExts = new string[] { ".jpg", ".png", ".jpeg", ".gif" };
+
+                    if (goodExts.Contains(ext.ToLower()))
+                    {
+                        imageName = Guid.NewGuid() + ext;
+
+                        //file path
+                        string savePath = Server.MapPath("~/Content/img/studentPics/");
+
+                        //image file
+                        Image convertedImage = Image.FromStream(studentImage.InputStream);
+
+                        //Max image size
+                        int maxImageSize = 500; //value in pixels
+
+                        //Max Thumb size
+                        int maxThumbSize = 100;
+
+                        //Call the ImageUtility to do work
+                        Utilities.ImageUtility.ResizeImage(savePath, imageName, convertedImage, maxImageSize, maxThumbSize);
+
+                        if (student.PhotoUrl != "noImage.jpg" && student.PhotoUrl != null)
+                        {
+                            //delete old file
+                            string path = Server.MapPath("~/Content/img/studentPics/");
+
+                            //Call Delete Method with path and filename
+                            Utilities.ImageUtility.Delete(path, student.PhotoUrl);
+                        }
+                    }
+
+                    else
+                    {
+                        imageName = "noImage.jpg";
+                    }
+
+                    student.PhotoUrl = imageName;
+                }
+
+                #endregion
+
                 db.Entry(student).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
