@@ -22,6 +22,18 @@ namespace SAT.MVC.UI.Controllers
             return View(scheduledClasses.ToList());
         }
 
+        //[HttpPost, ActionName("Complete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Index(int id)
+        //{
+        //    ScheduledClass scheduledClass = db.ScheduledClasses.Find(id);
+
+        //    scheduledClass.SCSID = 3;
+        //    db.SaveChanges();
+
+        //    return RedirectToAction("Index");
+        //}
+
         // GET: ScheduledClasses/Details/5
         public ActionResult Details(int? id)
         {
@@ -122,10 +134,32 @@ namespace SAT.MVC.UI.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             ScheduledClass scheduledClass = db.ScheduledClasses.Find(id);
-            db.ScheduledClasses.Remove(scheduledClass);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+
+            if (scheduledClass.SCSID == 4)
+            {
+                try
+                {
+                    db.ScheduledClasses.Remove(scheduledClass);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch (Exception exception)
+                {
+                    string except = exception.Message;
+                    return RedirectToAction(except);  //TODO Add custome 404 page for undeletable items.
+                }
+
+            }
+            else
+            {
+
+                scheduledClass.SCSID = 4;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
         }
+
 
         protected override void Dispose(bool disposing)
         {

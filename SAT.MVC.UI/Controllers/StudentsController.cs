@@ -221,12 +221,22 @@ namespace SAT.MVC.UI.Controllers
         {
             Student student = db.Students.Find(id);
 
-            string path = "~/Content/img/studentPics/";
-            Utilities.ImageUtilities.Delete(path, student.PhotoUrl);
+            if (student.SSID != 3) 
+            {
+                student.SSID = 3;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                string path = "~/Content/img/studentPics/";
+                Utilities.ImageUtilities.Delete(path, student.PhotoUrl);
 
-            db.Students.Remove(student);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+                db.Students.Remove(student);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
         }
 
         protected override void Dispose(bool disposing)

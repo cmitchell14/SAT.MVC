@@ -60,7 +60,7 @@ namespace SAT.MVC.UI.Controllers
             {
                 db.Courses.Add(cours);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ActiveIndex");
             }
 
             return View(cours);
@@ -92,7 +92,7 @@ namespace SAT.MVC.UI.Controllers
             {
                 db.Entry(cours).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ActiveIndex");
             }
             return View(cours);
         }
@@ -117,10 +117,18 @@ namespace SAT.MVC.UI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+
             Cours cours = db.Courses.Find(id);
-            db.Courses.Remove(cours);
+            if (cours.IsActive)
+            {
+                cours.IsActive = false;
+            }
+            else if (!cours.IsActive)
+            {
+                db.Courses.Remove(cours);
+            }
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("ActiveIndex");
         }
 
         protected override void Dispose(bool disposing)
