@@ -216,6 +216,7 @@
     <Content Include="_Archive\portfolio-item.html" />
     <Content Include="_Archive\portfolio-overview.html" />
     <Content Include="_Archive\pricing.html" />
+    <Content Include="Configs\connection.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
