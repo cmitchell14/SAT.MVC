@@ -125,7 +125,7 @@ namespace SAT.MVC.EF
 
     }
 
-    [MetadataType(typeof(ScheduledClassMetadata))]
+    [MetadataType(typeof(ScheduledClassStatusMetadata))]
     public partial class ScheduledClassStatus
     {
 
