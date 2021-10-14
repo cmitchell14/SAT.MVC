@@ -6,7 +6,7 @@ using System;
 
 namespace SAT.MVC.UI.Utilities
 {
-    public class ImageUtility
+    public class ImageUtilities
     {
         /// <summary>
         /// Saves provided image as two separate files: full-sized and thumbnail versions.
@@ -88,7 +88,7 @@ namespace SAT.MVC.UI.Utilities
         public static void Delete(string path, string fileName)
         {
             //Skip this action if targeted file is the "default image".
-            if (fileName.ToLower() == "noimage.jpg")
+            if (fileName.ToLower() == "noimage.png")
             {
                 return;
             }

@@ -8,15 +8,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SAT.MVC.EF;
-using SAT.MVC.UI.Utilities;
+using SAT.MVC.UI.Controllers;
 namespace SAT.MVC.UI.Controllers
 {
     [Authorize(Roles = "Admin,Scheduler")]
     public class StudentsController : Controller
     {
         private SATEntities db = new SATEntities();
-
-        public object ImageUtility { get; private set; }
 
         // GET: Students
         public ActionResult Index()
@@ -91,7 +89,8 @@ namespace SAT.MVC.UI.Controllers
                         int maxThumbSize = 100;
 
                         //Call the ImageUtility to do work
-                        Utilities.ImageUtility.ResizeImage(savePath, imageName, convertedImage, maxImageSize, maxThumbSize);
+                        Utilities.ImageUtilities.ResizeImage(savePath, imageName, convertedImage, maxImageSize, maxThumbSize);
+
 
                         #endregion
 
@@ -170,7 +169,7 @@ namespace SAT.MVC.UI.Controllers
                         int maxThumbSize = 100;
 
                         //Call the ImageUtility to do work
-                        Utilities.ImageUtility.ResizeImage(savePath, imageName, convertedImage, maxImageSize, maxThumbSize);
+                        Utilities.ImageUtilities.ResizeImage(savePath, imageName, convertedImage, maxImageSize, maxThumbSize);
 
                         if (student.PhotoUrl != "noImage.jpg" && student.PhotoUrl != null)
                         {
@@ -178,7 +177,7 @@ namespace SAT.MVC.UI.Controllers
                             string path = Server.MapPath("~/Content/img/studentPics/");
 
                             //Call Delete Method with path and filename
-                            Utilities.ImageUtility.Delete(path, student.PhotoUrl);
+                            Utilities.ImageUtilities.Delete(path, student.PhotoUrl);
                         }
                     }
 
@@ -222,6 +221,10 @@ namespace SAT.MVC.UI.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Student student = db.Students.Find(id);
+
+            string path = "~/Content/img/studentPics/";
+            Utilities.ImageUtilities.Delete(path, student.PhotoUrl);
+
             db.Students.Remove(student);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -180,12 +180,15 @@ namespace SAT.MVC.EF
         [Required(ErrorMessage = "This is a required field")]
         public int SSID { get; set; }
 
+        
+
     }
 
     [MetadataType(typeof(StudentMetadata))]
     public partial class Student
     {
-
+        [Display(Name = "Student Name")]
+        public string FullName { get { return string.Concat(FirstName + " " + LastName); } }
     }
 
     #endregion
