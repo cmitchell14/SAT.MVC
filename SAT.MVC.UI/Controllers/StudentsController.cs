@@ -142,11 +142,10 @@ namespace SAT.MVC.UI.Controllers
 
                 #region File Upload
 
-                string imageName = "";
 
                 if (studentImage != null)
                 {
-                    imageName = studentImage.FileName;
+                    string imageName = studentImage.FileName;
 
                     string ext = imageName.Substring(imageName.LastIndexOf("."));
 
