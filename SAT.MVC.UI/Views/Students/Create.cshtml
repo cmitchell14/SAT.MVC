@@ -89,6 +89,10 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.PhotoUrl, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
+                    <label for="studentImage">
+                        <img src="~/Content/img/studentPics/noImage.jpg" alt="default cover image" style="width:100px; margin-bottom: 5px;" id="img" />
+                    </label>
+                    <br/>
                     <input type="file" name="studentImage" id="studentImage" />
                 </div>
             </div>
@@ -116,4 +120,29 @@
 <div>
     
 </div>
-</div>
+</div>  
+@section scripts{
+    
+<script>
+    document.getElementById('studentImage').onchange = function (evt) {
+            var tgt = evt.target || window.event.srcElement,
+                files = tgt.files;
+
+            // FileReader support
+            if (FileReader && files && files.length) {
+                var fr = new FileReader();
+                fr.onload = function () {
+                    document.getElementById('img').src = fr.result;
+                }
+                fr.readAsDataURL(files[0]);
+            }
+
+            // Not supported
+            else {
+                // fallback -- perhaps submit the input to an iframe and temporarily store
+                // them on the server until the user's session ends.
+            }
+        }
+</script>
+    
+    }

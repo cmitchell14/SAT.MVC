@@ -68,6 +68,7 @@ namespace SAT.MVC.EF
 
         [Required(ErrorMessage = "This is a required field.")]
         [Display(Name = "Enrollment Date")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public System.DateTime EnrollmentDate { get; set; }
     }
 
@@ -86,10 +87,12 @@ namespace SAT.MVC.EF
 
         [Required(ErrorMessage = "This is a required field.")]
         [Display(Name = "Start Date")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public System.DateTime StartDate { get; set; }
 
         [Required(ErrorMessage = "This is a required field.")]
         [Display(Name = "End Date")]
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public System.DateTime EndDate { get; set; }
 
         [Required(ErrorMessage = "This is a required field.")]
@@ -121,6 +124,7 @@ namespace SAT.MVC.EF
 
         [Required(ErrorMessage = "This is a required field.")]
         [StringLength(50, ErrorMessage = "50 character max.")]
+        [Display(Name = "Status")]
         public string SCSName { get; set; }
 
     }
