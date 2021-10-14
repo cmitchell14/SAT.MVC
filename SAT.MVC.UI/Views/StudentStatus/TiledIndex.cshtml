@@ -1,0 +1,35 @@
+﻿@model IEnumerable<SAT.MVC.EF.StudentStatus>
+
+@{
+    ViewBag.Title = "Tile View";
+}
+
+<div class="container">
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-outline-success" })
+</p>
+<div class="pull-right">
+    <p class="pull-right" >
+        @Html.ActionLink("Table View", "Index", "StudentStatus", new { @class = "btn btn-outline-info" })
+    </p>
+</div>
+    <div class="clearfix"></div>
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            <div class="card m-1" style="width: 18rem; box-shadow: 3px 3px #888888 ">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.SSName)</h5>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.SSDescription)</p>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.SSID }, new { @class = "card-link" })
+                    @Html.ActionLink("Details", "Details", new { id = item.SSID }, new { @class = "card-link" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SSID }, new { @class = "card-link" })
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
