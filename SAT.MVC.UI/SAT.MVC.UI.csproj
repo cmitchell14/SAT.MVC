@@ -171,7 +171,6 @@
     <Compile Include="Controllers\CoursController.cs" />
     <Compile Include="Controllers\EnrollmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InactiveCoursesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\ScheduledClassesController.cs" />
@@ -295,18 +294,14 @@
     <Content Include="Views\Cours\Delete.cshtml" />
     <Content Include="Views\Cours\Details.cshtml" />
     <Content Include="Views\Cours\Edit.cshtml" />
-    <Content Include="Views\Cours\Index.cshtml" />
-    <Content Include="Views\InactiveCourses\Create.cshtml" />
-    <Content Include="Views\InactiveCourses\Delete.cshtml" />
-    <Content Include="Views\InactiveCourses\Details.cshtml" />
-    <Content Include="Views\InactiveCourses\Edit.cshtml" />
-    <Content Include="Views\InactiveCourses\Index.cshtml" />
+    <Content Include="Views\Cours\ActiveIndex.cshtml" />
     <Content Include="Views\StudentStatus\Create.cshtml" />
     <Content Include="Views\StudentStatus\Delete.cshtml" />
     <Content Include="Views\StudentStatus\Details.cshtml" />
     <Content Include="Views\StudentStatus\Edit.cshtml" />
     <Content Include="Views\StudentStatus\Index.cshtml" />
     <Content Include="Views\StudentStatus\TiledIndex.cshtml" />
+    <Content Include="Views\Cours\InactiveIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

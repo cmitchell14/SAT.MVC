@@ -16,10 +16,16 @@ namespace SAT.MVC.UI.Controllers
         private SATEntities db = new SATEntities();
 
         // GET: Cours
-        public ActionResult Index()
+        public ActionResult ActiveIndex()
         {
             var active = db.Courses.Where(x => x.IsActive == true).ToList();
             return View(active);
+        }
+        
+        public ActionResult InactiveIndex()
+        {
+            var inactive = db.Courses.Where(x => x.IsActive == false).ToList();
+            return View(inactive);
         }
 
         // GET: Cours/Details/5
