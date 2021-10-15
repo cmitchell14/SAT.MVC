@@ -217,6 +217,8 @@
     <Content Include="_Archive\portfolio-overview.html" />
     <Content Include="_Archive\pricing.html" />
     <Content Include="Configs\connection.config" />
+    <Content Include="Content\assets\SATDocumentation.pdf" />
+    <Content Include="Content\assets\SATRequirementSummary.pdf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
